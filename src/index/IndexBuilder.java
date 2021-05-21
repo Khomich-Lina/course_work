@@ -9,13 +9,13 @@ import java.util.*;
 public class IndexBuilder {
     static Map<String, List<String>> index = new HashMap();
 
-    /*public static void main(String[] args) throws IOException {
-        File folder = new File("./data");
-        processFilesFromFolder(folder);
+    public static void main(String[] args) throws IOException {
+        File folder = new File("./datatest");
+        buildIndex(folder);
         for (Map.Entry entry : index.entrySet()) {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
-    }*/
+    }
 
     public static void buildIndex(File folder) throws IOException {
         List<File> folderEntries = Arrays.asList(folder.listFiles());
@@ -32,7 +32,8 @@ public class IndexBuilder {
                 String[] words = line.split(" ");
                 List<String> listOfWords = Arrays.asList(words);
                 for (String word : listOfWords) {
-                    word=word.replaceAll("[,.<br/>]","");
+                    word=word.replaceAll("[,./>]","");
+                    word=word.replaceAll("<br","");
                     if(word == null) listOfWords.remove(word);
                     word = word.toLowerCase(Locale.ROOT);
                     index.computeIfAbsent(word, w -> new ArrayList<>()).add(nameFile);
