@@ -1,0 +1,13 @@
+
+b
+java:S2095"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(ú•ô¯
+E
+java:S3740	"/Provide the parametrized type for this generic.(¤€›
+]
+java:S2259""BA "NullPointerException" could be thrown; "word" is nullable here.(¶ÿˆùÿÿÿÿ
+o
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(âÊÀ§
+Z
+java:S2147)"DCombine this catch with the one at line 39, which has the same body.(ï­£Ä
+^
+java:S5361 "HReplace this call to "replaceAll()" by a call to the "replace()" method.(ş¥şË
