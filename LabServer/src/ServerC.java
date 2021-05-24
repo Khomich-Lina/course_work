@@ -42,6 +42,7 @@ class ServerC extends Thread {
                 String amountOfThreadsStr = this.in.readLine();
                 int amountOfThreads = Integer.parseInt(amountOfThreadsStr);
                 List<String> listFilesName = createListWithFilesName(folder);
+                long time = System.currentTimeMillis();
                 ThreadIndexBuilder ThreadArray[] = new ThreadIndexBuilder[amountOfThreads];
                 for (int i=0; i<amountOfThreads; i++) {
                     ThreadArray[i] = new ThreadIndexBuilder(listFilesName,listFilesName.size()/amountOfThreads * i, i == (amountOfThreads - 1) ? listFilesName.size() : listFilesName.size() / amountOfThreads * (i + 1));
@@ -50,6 +51,7 @@ class ServerC extends Thread {
                 for (int i=0;i<amountOfThreads;i++){
                     ThreadArray[i].join();
                 }
+                System.out.println("Parallel time:"+ (System.currentTimeMillis()-time));
 
                 for (int i =0; i<amountOfThreads; i++){
                     int finalI = i;
