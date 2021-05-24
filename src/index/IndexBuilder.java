@@ -11,20 +11,30 @@ public class IndexBuilder {
 
     public static void main(String[] args) throws IOException {
         File folder = new File("./datatest");
-        buildIndex(folder);
+        System.out.println(buildIndex(folder));
+       // System.out.println(buildIndex(folder).size());
+        /*
         for (Map.Entry entry : index.entrySet()) {
             System.out.println(entry.getKey() + " " + entry.getValue());
-        }
+        }*/
     }
 
-    public static void buildIndex(File folder) throws IOException {
-        List<File> folderEntries = Arrays.asList(folder.listFiles());
+    public static List<String> buildIndex(File folder) throws IOException {
+        /*List<File> folderEntries = Arrays.asList(folder.listFiles());
+        //System.out.println(folderEntries.size());
+        ArrayList<String> listOfFileName = new ArrayList<>();
         for (File entry : folderEntries) {
             if (entry.isDirectory()) {
                 buildIndex(entry);
                 continue;
             }
-            String line;
+            System.out.println(entry.getName());
+            String  name = entry.getName();
+            listOfFileName.add(name);
+            System.out.println(listOfFileName.size());
+
+
+            /*String line;
             String nameFile = entry.getPath();
             nameFile = nameFile.replaceAll(".\\\\data\\\\", "");
             BufferedReader reader = new BufferedReader(new FileReader(entry));
@@ -41,7 +51,23 @@ public class IndexBuilder {
             }
             reader.close();
         }
-
+        System.out.println(listOfFileName.size());
+        return listOfFileName;
+        */
+        List<String> listWithFilesName = new ArrayList<>();
+        Queue<File> fileTree = new PriorityQueue<>();
+        Collections.addAll(fileTree, folder.listFiles());
+        while (!fileTree.isEmpty())
+        {
+            File currentFile = fileTree.remove();
+            if(currentFile.isDirectory()){
+                Collections.addAll(fileTree, currentFile.listFiles());
+            } else {
+                listWithFilesName.add(currentFile.getPath());
+            }
+            System.out.println(listWithFilesName);
+        }
+        return  listWithFilesName;
     }
 }
 
